@@ -122,6 +122,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
             double backLeftPower   = axial - lateral + yaw;
             double backRightPower  = axial + lateral - yaw;
 
+
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
             max = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));

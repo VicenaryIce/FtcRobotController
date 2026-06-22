@@ -11,12 +11,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Disabled
 public class iLikeBagels extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor = 
+
+    private DcMotor frontLeftDrive = null;
+    private DcMotor frontRightDrive = null;
+    private DcMotor backLeftDrive = null;
+    
+
+
+    public void runOpMode(){
+
+
+    }
 
 
 }
+//everything needs to go in the class.
+//telemetry.adddata is the same thing as printing i think
 
-public void runOpMode(){
-
-
-}
