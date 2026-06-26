@@ -6,8 +6,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+
 @TeleOp(name = "Basic",group = "OpMode")
-@Disabled
+
 public class iLikeBagels extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -15,6 +21,10 @@ public class iLikeBagels extends OpMode {
     private DcMotor frontRightDrive = null;
     private DcMotor backLeftDrive = null;
     private DcMotor backRightDrive = null;
+    private AprilTagProcessor aprilTag;
+
+    private VisionPortal visionPortal;
+    private static final boolean USE_WEBCAM = true;
     public void init(){
         frontLeftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
         frontRightDrive  = hardwareMap.get(DcMotor.class, "right_drive");
@@ -56,6 +66,24 @@ public class iLikeBagels extends OpMode {
         backRightDrive.setPower(backrightpower);
     }
     public void stop(){
+    }
+    public void initAprilTag(){
+        aprilTag = new AprilTagProcessor.Builder().build();
+        VisionPortal.Builder builder = new VisionPortal.Builder();
+        if(USE_WEBCAM){
+            builder.setCamera(hardwareMap.get(WebcamName.class,"name"));
+        } else{
+            builder.setCamera(BuiltinCameraDirection.BACK);
+        }
+        builder.addProcessor(aprilTag);
+        visionPortal = builder.build();
+        builder.enableLiveView(true;
+        builder.setAutoStopLiveView(false);
+
+    }
+    public void telemetryAprilTag(){
+        List<AprilTagDetection> detections = aprilTag.getDetections();
+        if
     }
 
 

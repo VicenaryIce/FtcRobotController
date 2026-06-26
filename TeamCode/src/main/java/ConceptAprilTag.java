@@ -81,7 +81,7 @@ public class ConceptAprilTag extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        initAprilTag();
+        initAprilTag(); //init the april tag when the opmode starts
 
         // Wait for the DS start button to be touched.
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
@@ -89,9 +89,9 @@ public class ConceptAprilTag extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        while (opModeIsActive()) {
+        while (opModeIsActive()) { //What we check during the actual running of the opmode
 
-            telemetryAprilTag();
+            telemetryAprilTag(); //Using the april tag to check stuff
 
             // Push telemetry to the Driver Station.
             telemetry.update();
@@ -133,13 +133,13 @@ public class ConceptAprilTag extends LinearOpMode {
             // If you do not manually specify calibration parameters, the SDK will attempt
             // to load a predefined calibration for your camera.
             //.setLensIntrinsics(578.272, 578.272, 402.145, 221.506)
-            // ... these parameters are fx, fy, cx, cy.
+            // ... these parameters are fx, fy, cx, cy. //What does this even mean
 
             .build();
 
         // Adjust Image Decimation to trade-off detection-range for detection-rate.
         // eg: Some typical detection data using a Logitech C920 WebCam
-        // Decimation = 1 ..  Detect 2" Tag from 10 feet away at 10 Frames per second
+        // Decimation = 1 ..  Detect 2" Tag from 10 feet away at 10 Frames per second //Farther range, small tag but low rate
         // Decimation = 2 ..  Detect 2" Tag from 6  feet away at 22 Frames per second
         // Decimation = 3 ..  Detect 2" Tag from 4  feet away at 30 Frames Per Second (default)
         // Decimation = 3 ..  Detect 5" Tag from 10 feet away at 30 Frames Per Second (default)
@@ -151,12 +151,12 @@ public class ConceptAprilTag extends LinearOpMode {
 
         // Set the camera (webcam vs. built-in RC phone camera).
         if (USE_WEBCAM) {
-            builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
+            builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1")); //This gets the camera thst we'll use to detect apriltags.
         } else {
             builder.setCamera(BuiltinCameraDirection.BACK);
         }
 
-        // Choose a camera resolution. Not all cameras support all resolutions.
+        // Choose a camera resolution. Not all cameras support all resolutions. //We use a limelight?
         //builder.setCameraResolution(new Size(640, 480));
 
         // Enable the RC preview (LiveView).  Set "false" to omit camera monitoring.

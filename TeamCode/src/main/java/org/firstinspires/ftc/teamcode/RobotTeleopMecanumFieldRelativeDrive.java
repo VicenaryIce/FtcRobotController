@@ -127,6 +127,8 @@ public class RobotTeleopMecanumFieldRelativeDrive extends OpMode {
         // Second, rotate angle by the angle the robot is pointing
         theta = AngleUnit.normalizeRadians(theta -
                 imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+        //subtract where the robot wants to go vs where it actually is to get where it actually needs to go.
+
 
         // Third, convert back to cartesian
         double newForward = r * Math.sin(theta);
