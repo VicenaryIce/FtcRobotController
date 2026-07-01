@@ -122,7 +122,9 @@ public class RobotTeleopMecanumFieldRelativeDrive extends OpMode {
         //Specific functions are defined outside of the loop.
         // First, convert direction being asked to drive to polar coordinates
         double theta = Math.atan2(forward, right);
+        //Fidning what direction that you want to go on the field
         double r = Math.hypot(right, forward);
+        //Finding the degree that you went 
 
         // Second, rotate angle by the angle the robot is pointing
         theta = AngleUnit.normalizeRadians(theta -
