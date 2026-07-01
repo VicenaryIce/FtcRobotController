@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import java.util.List;
 
 @TeleOp(name = "Basic",group = "OpMode")
 
@@ -34,6 +35,7 @@ public class iLikeBagels extends OpMode {
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        initAprilTag();
 
     }
     public void init_loop(){
@@ -54,6 +56,7 @@ public class iLikeBagels extends OpMode {
         max = Math.max(Math.abs(frontleftpower),Math.abs(frontrightpower));
         max = Math.max(Math.abs(max),Math.abs(backleftpower));
         max = Math.max(Math.abs(max),Math.abs(backrightpower));
+        telemetryAprilTag();
         if (max >1.0){
             frontleftpower /=max;
             frontrightpower /=max;
@@ -77,15 +80,29 @@ public class iLikeBagels extends OpMode {
         }
         builder.addProcessor(aprilTag);
         visionPortal = builder.build();
-        builder.enableLiveView(true;
+        builder.enableLiveView(true);
         builder.setAutoStopLiveView(false);
 
     }
-    public void telemetryAprilTag(){
+    public void telemetryAprilTag() {
         List<AprilTagDetection> detections = aprilTag.getDetections();
-        if
-    }
+        telemetry.addData("Current tags detected", detections.size());
+        for (AprilTagDetection detect : detections) {
+            //is this kinda like a for loop? like for detection in detection
+            if (detect.metadata != null) {
+                telemetry.addLine(String.format(detect.metadata.name, detect.id));
+                telemetry.addLine(String.format("position", detect.ftcPose.x, detect.ftcPose.y, detect.ftcPose.z));
+                if (!detect.metadata.name.contains("Obelsik")) {//This will return true or false
+                    telemetry.addLine(String.format("pos",detect.robotPose.getPosition().x));
 
+
+                }
+            }
+        }
+    }
+//what is a pose in FTC?
+    //what does the ftcpose.yaw, pitch and roll do?
+    //what does the range and bearing do? im confused
 
 
 
