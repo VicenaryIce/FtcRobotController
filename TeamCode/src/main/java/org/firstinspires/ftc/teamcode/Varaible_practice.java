@@ -15,6 +15,7 @@ public class Varaible_practice extends OpMode {
     }
     public void loop(){
 
+
     }
 
 }

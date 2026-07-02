@@ -147,7 +147,7 @@ public class ConceptAprilTag extends LinearOpMode {
         //aprilTag.setDecimation(3);
 
         // Create the vision portal by using a builder.
-        VisionPortal.Builder builder = new VisionPortal.Builder();
+        VisionPortal.Builder builder = new VisionPortal.Builder().addProcessor(aprilTag);
 
         // Set the camera (webcam vs. built-in RC phone camera).
         if (USE_WEBCAM) {
@@ -171,7 +171,7 @@ public class ConceptAprilTag extends LinearOpMode {
         //builder.setAutoStopLiveView(false);
 
         // Set and enable the processor.
-        builder.addProcessor(aprilTag);
+        //builder.addProcessor(aprilTag);
 
         // Build the Vision Portal, using the above settings.
         visionPortal = builder.build();
