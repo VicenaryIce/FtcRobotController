@@ -4,9 +4,10 @@ public class RobotLocationPractice {
     double angle;
 
     //Creating a constructor method
-    public RobotLocationPractice(double angle){
+    public RobotLocationPractice(double angle1){
         //User will pass an angle into the function, and then we'll do stuff
-        this.angle = angle;
+        this.angle = angle1;
+        //Declaring that this class's angle varialbe is the angle that the user passed in
 
     }
     public double getHeading(){
@@ -23,15 +24,16 @@ public class RobotLocationPractice {
         }
         return angle;
     }
-    public void setAngle(double angle){
-        this.angle = angle;
+    public void setAngle(double angle1){
+        this.angle = angle1;
         //This way people can set whatever angle that they want to normalize
     }
     public double getAngle(){
-        return this.angle;
+        return angle;
 
     }
     public void turnbot(double angleChange){
+        //The reason that we dont use THIS is because there is no other instance of angle that is disputing which angle we're talking about.
         angle = angle+angleChange;
     }
 

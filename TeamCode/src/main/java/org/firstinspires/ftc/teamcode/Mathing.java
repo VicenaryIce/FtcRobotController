@@ -12,5 +12,9 @@ public class Mathing {
         double num2 = this.num;
         this.num = num2+ additive;
         return this.num;
+        //Here, the thisnum is changed and modified. I could have done something like:
+        //num2  = this.num
+        //num2+=additive
+        //return num2 --> THis would have kept the original value of thisnum intact ig
     }
 }

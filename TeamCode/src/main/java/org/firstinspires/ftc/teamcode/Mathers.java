@@ -15,7 +15,7 @@ public class Mathers extends OpMode {
     public void loop(){
         if (gamepad1.a){
             num.addnum(11);
-            telemetry.addData(":Num",num.num);
+            telemetry.addData(":Num",num.num);//This isntance of the Mathing class is called num, and has a varialbe called num.
 
         }
 
