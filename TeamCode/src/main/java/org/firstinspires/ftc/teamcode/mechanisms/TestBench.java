@@ -5,11 +5,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 public class TestBench {
     //This is how we are giong to initialize all of the hardware on our robot in this config
+    //This seems to be how Mr Pratt plans to do this
     private DigitalChannel touchSensor;
     private DcMotor motor;
     private double ticksPerRev;
-    public void init(HardwareMap hwMap){
-        motor = hwMap.get(DcMotor.class,"motor");
+    public void initastouch(HardwareMap hwMap){
+        /*motor = hwMap.get(DcMotor.class,"motor");
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ticksPerRev = motor.getMotorType().getTicksPerRev();
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -19,12 +20,19 @@ public class TestBench {
             //This gives the best chance for the motors to actually run at the same velocity
             //This can be good for drivetrains.
         //Runwithout encoder: Run at a certain power
-        //Stop and reset encoder: stops and resets encoder during program running
+        //Stop and reset encoder: stops and resets encoder during program running */
 
 
         touchSensor = hwMap.get(DigitalChannel.class,"touch_sensor");
         //We called the touch sensor touch_sensor in our hardware configuration on the DS
         touchSensor.setMode(DigitalChannel.Mode.INPUT);//Setting the direction of the digital device
+    }
+    public void initasmotor(HardwareMap hwmap){
+
+        motor = hwmap.get(DcMotor.class,"motor");
+        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ticksPerRev = motor.getMotorType().getTicksPerRev();
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
     public boolean getTouchSensorState(){
         return !touchSensor.getState();
