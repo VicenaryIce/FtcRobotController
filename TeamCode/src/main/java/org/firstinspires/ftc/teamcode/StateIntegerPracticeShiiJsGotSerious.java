@@ -47,7 +47,24 @@ public class StateIntegerPracticeShiiJsGotSerious extends OpMode {
                 telemetry.addLine("Auto state machine finished");
 
         }*/
-        switch
+        switch(goodlyState){
+            case WAIT_FOR_A:
+                if ( gamepad1.a){
+                    goodlyState = Stater.WAIT_FOR_B;
+                }
+
+            case WAIT_FOR_B:
+                if ( gamepad1.b){
+                    goodlyState = Stater.WAIT_FOR_X;
+                }
+
+            case WAIT_FOR_X:
+                if ( gamepad1.x){
+                    goodlyState = Stater.FINISHED;
+                }
+            default:
+
+        }
 
     }
 }
