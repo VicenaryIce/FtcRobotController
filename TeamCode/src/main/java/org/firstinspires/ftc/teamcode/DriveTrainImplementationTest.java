@@ -16,6 +16,7 @@ public class DriveTrainImplementationTest  extends OpMode {
     TestBenchDistance distance_sensor = new TestBenchDistance();
 
     SlideTesting slideMotors = new SlideTesting();
+    boolean lastb;
 
     enum driveState{
         DRIVE,
@@ -32,6 +33,7 @@ public class DriveTrainImplementationTest  extends OpMode {
 
     }
     public void loop(){
+        boolean currentb= gamepad1.b;
 
 
         //driveTrain.MecanumDrive(-gamepad1.left_stick_y, gamepad1.left_stick_x,gamepad1.right_stick_x);
@@ -40,23 +42,23 @@ public class DriveTrainImplementationTest  extends OpMode {
             case DRIVE:
                 driveTrain.MecanumDrive(-gamepad1.left_stick_y, gamepad1.left_stick_x,gamepad1.right_stick_x);
 
-                if (slideMotors.slideDone){
-                    slideMotors.unSlide();
+
+                if (currentb &&!lastb){
+                    if (slideMotors.slideDone){
+                        slideMotors.unSlide();
+
+
+                    }
+                    else{
+                        slideMotors.slide();
+
+                    }
 
 
                 }
-                else{
-                    slideMotors.slide();
-                    
-                }
-                if (gamepad1.b){
-                    slideMotors.slide();
 
-                }
-                if(gamepad1.b && slideMotors.slideDone){
 
-                    slideMotors.unSlide();
-                }
+
 
                 if(distance_sensor.getDistance()<10){
                     state = driveState.STOP;
@@ -67,9 +69,11 @@ public class DriveTrainImplementationTest  extends OpMode {
                 if(gamepad1.a){
                     state = driveState.DRIVE;
                 }
+            break;
 
 
         }
+        lastb = currentb;
 
     }
 
