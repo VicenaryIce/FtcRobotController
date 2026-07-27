@@ -18,15 +18,7 @@ public class ImuPractice extends OpMode {
         telemetry.addData("Heading", bench.getHeading());
 
     }
-    public void convertToField(double forward, double right, double  rotate){
-        double theta = Math.atan2(forward,right);
-        double hypot = Math.hypot(right,forward);
 
-        double angle = AngleUnit.normalizeRadians(theta - bench.getHeading());
 
-        double newforward = hypot * Math.sin(angle);
-        double newright = hypot * Math.cos(angle);
-
-    }
 
 }
