@@ -76,7 +76,7 @@ public class ConceptExploringIMUOrientation extends LinearOpMode {
             = RevHubOrientationOnRobot.LogoFacingDirection.values();
     static RevHubOrientationOnRobot.UsbFacingDirection[] usbFacingDirections
             = RevHubOrientationOnRobot.UsbFacingDirection.values();
-    static int LAST_DIRECTION = logoFaceDirections.length - 1;
+    static int LAST_DIRECTION = RevHubOrientationOnRobot.LogoFacingDirection.values().length - 1;
     static float TRIGGER_THRESHOLD = 0.2f;
 
     IMU imu;
