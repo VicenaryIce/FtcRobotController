@@ -7,17 +7,19 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
 public class FallFestBot extends OpMode {
-    private ElapsedTime runtime = new ElapsedTime();
-
-    public DcMotor catapultMotor = null;
+    public DcMotor catapultMotor;
     public void init() {
         catapultMotor  = hardwareMap.get(DcMotor.class, "test");
         telemetry.addData("Status: ","Initialized");
-
-
     }
     @Override
     public void loop() {
+        if(gamepad1.a){
+            catapultMotor.setPower(-1);
+        }
+        else{
+            catapultMotor.setPower(0);
+        }
 
     }
 }
